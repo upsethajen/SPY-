@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spy Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    /* SETUP SCREEN */
+    #setup {
+        min-height: 100vh;
+        background: 
+            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url("https://upload.wikimedia.org/wikipedia/commons/4/4d/Sankt_Petri_skola_Malm%C3%B6.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    #setupBox {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 25px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    /* GAME SCREEN */
+    #game {
+        min-height: 100vh;
+        background: #111;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        margin-bottom: 15px;
+    }
+
+    input, select {
+        font-size: 1.2em;
+        padding: 10px;
+        margin: 10px 0;
+        width: 100%;
+        border-radius: 8px;
+        border: none;
+    }
+
+    button {
+        font-size: 1.3em;
+        padding: 15px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 10px;
+        background: #4CAF50;
+        color: white;
+        width: 100%;
+    }
+
+    button:active {
+        background: #3b9a42;
+    }
+
+    .card {
+        margin: 40px auto;
+        padding: 30px;
+        background: #222;
+        border-radius: 15px;
+        max-width: 350px;
+        font-size: 1.4em;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- SETUP -->
+<div id="setup">
+    <div id="setupBox">
+        <h1>🕵️ SPY GAME</h1>
+
+        <p>Number of players</p>
+        <input type="number" id="players" min="3" max="20" value="5">
+
+        <p>Choose category</p>
+        <select id="categorySelect"></select>
+
+        <button id="startBtn">Start Game</button>
+    </div>
+</div>
+
+<!-- GAME -->
+<div id="game" class="hidden">
+    <h2 id="playerTitle"></h2>
+
+    <div class="card">
+        <p id="message">Tap to reveal your role</p>
+    </div>
+
+    <button id="tapBtn">Tap</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const categories = {
+        "Places": ["Beach", "Airport", "School", "Hospital", "Restaurant"],
+        "Objects": ["Camera", "Laptop", "Backpack", "Clock", "Toothbrush"],
+        "Activities": ["Swimming", "Cooking", "Hiking", "Dancing", "Studying"]
+    };
+
+    let numPlayers;
+    let spy;
+    let category;
+    let word;
+    let currentPlayer = 1;
+    let revealed = false;
+
+    const categorySelect = document.getElementById("categorySelect");
+    const startBtn = document.getElementById("startBtn");
+    const tapBtn = document.getElementById("tapBtn");
+
+    // Fill category dropdown
+    for (let cat in categories) {
+        const option = document.createElement("option");
+        option.value = cat;
+        option.textContent = cat;
+        categorySelect.appendChild(option);
+    }
+
+    startBtn.onclick = startGame;
+    tapBtn.onclick = nextStep;
+
+    function startGame() {
+        numPlayers = parseInt(document.getElementById("players").value);
+        category = categorySelect.value;
+
+        const words = categories[category];
+        word = words[Math.floor(Math.random() * words.length)];
+        spy = Math.floor(Math.random() * numPlayers) + 1;
+
+        document.getElementById("setup").classList.add("hidden");
+        document.getElementById("game").classList.remove("hidden");
+
+        updateScreen();
+    }
+
+    function updateScreen() {
+        document.getElementById("playerTitle").textContent = `Player ${currentPlayer}`;
+        document.getElementById("message").textContent = "Tap to reveal your role";
+        revealed = false;
+    }
+
+    function nextStep() {
+        const msg = document.getElementById("message");
+
+        if (!revealed) {
+            if (currentPlayer === spy) {
+                msg.innerHTML = "🕵️ <b>YOU ARE THE SPY</b><br>Blend in!";
+            } else {
+                msg.innerHTML =
+                    `<b>Category:</b><br>${category}<br><br><b>Word:</b><br>${word}`;
+            }
+            revealed = true;
+        } else {
+            currentPlayer++;
+            if (currentPlayer > numPlayers) {
+                msg.innerHTML = "All roles given.<br><br>Let the game begin!";
+                tapBtn.style.display = "none";
+            } else {
+                updateScreen();
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
