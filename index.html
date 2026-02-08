@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Spy Game</title>
@@ -111,8 +111,8 @@ button:active {
         Tryck för att visa din roll
     </div>
 
-    <button id="tapBtn">Tryck</button>
-    <button id="restartBtn" class="hidden">Starta om</button>
+    <button id="tapBtn">Tap</button>
+    <button id="restartBtn" class="hidden">Restart</button>
 </div>
 
 <script>
@@ -187,7 +187,7 @@ const categories = {
     ]
 };
 
-// ---- Spelloop ----
+// ---- Game Logic ----
 let numPlayers, spy, category, word;
 let currentPlayer = 1;
 let revealed = false;
@@ -198,13 +198,13 @@ const startBtn = document.getElementById("startBtn");
 const tapBtn = document.getElementById("tapBtn");
 const restartBtn = document.getElementById("restartBtn");
 
-// Fyll dropdown robust
-Object.keys(categories).forEach(cat => {
+// Fill dropdown
+for (let cat in categories) {
     const option = document.createElement("option");
     option.value = cat;
     option.textContent = cat;
     categorySelect.appendChild(option);
-});
+}
 
 startBtn.onclick = startGame;
 tapBtn.onclick = nextStep;
@@ -226,7 +226,7 @@ function startGame() {
 }
 
 function updateScreen() {
-    document.getElementById("playerTitle").textContent = `Spelare ${currentPlayer}`;
+    document.getElementById("playerTitle").textContent = `Player ${currentPlayer}`;
     document.getElementById("cardText").textContent = "Tryck för att visa din roll";
     revealed = false;
 }
@@ -238,13 +238,13 @@ function nextStep() {
         if (currentPlayer === spy) {
             card.innerHTML = "🕵️<br><b>DU ÄR SPY</b>";
         } else {
-            card.innerHTML = `<b>Kategori:</b><br>${category}<br><br><b>Ord:</b><br>${word}`;
+            card.innerHTML = `<b>Category:</b><br>${category}<br><br><b>Word:</b><br>${word}`;
         }
         revealed = true;
     } else {
         currentPlayer++;
         if (currentPlayer > numPlayers) {
-            card.innerHTML = `Alla har sett sin roll.<br><br><b>Spelare ${starter}</b> börjar prata!`;
+            card.innerHTML = `Alla har fått sitt ord.<br><br><b>Player ${starter}</b> starts talking!`;
             tapBtn.classList.add("hidden");
             restartBtn.classList.remove("hidden");
         } else {
