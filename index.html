@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Spy Game</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 html, body {
     margin: 0;
@@ -91,7 +90,6 @@ button:active {
 </head>
 
 <body>
-
 <!-- SETUP -->
 <div id="setup">
     <h1>Williams Spy</h1>
@@ -122,208 +120,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const categories = {
     "Länder": [
-    "Afghanistan",
-    "Albanien",
-    "Andorra",
-    "Argentina",
-    "Armenien",
-    "Australien",
-    "Österrike",
-    "Azerbajdzjan",
-    "Bangladesh",
-    "Vitryssland",
-    "Belgien",
-    "Bhutan",
-    "Bosnien och Hercegovina",
-    "Brasilien",
-    "Bulgarien",
-    "Kanada",
-    "Chile",
-    "Kina",
-    "Colombia",
-    "Kroatien",
-    "Kuba",
-    "Cypern",
-    "Tjeckien",
-    "Danmark",
-    "Egypten",
-    "Estland",
-    "Etiopien",
-    "Fiji",
-    "Finland",
-    "Frankrike",
-    "Georgien",
-    "Tyskland",
-    "Grekland",
-    "Grenada",
-    "Ungern",
-    "Island",
-    "Indien",
-    "Indonesien",
-    "Iran",
-    "Irak",
-    "Irland",
-    "Israel",
-    "Italien",
-    "Japan",
-    "Jordanien",
-    "Kazakhstan",
-    "Kenya",
-    "Kuwait",
-    "Kirgizistan",
-    "Lettland",
-    "Libanon",
-    "Libyen",
-    "Liechtenstein",
-    "Litauen",
-    "Luxemburg",
-    "Madagaskar",
-    "Malaysia",
-    "Maldiverna",
-    "Malta",
-    "Mexiko",
-    "Moldavien",
-    "Monaco",
-    "Mongoliet",
-    "Montenegro",
-    "Marocko",
-    "Nepal",
-    "Nederländerna",
-    "Nya Zeeland",
-    "Nigeria",
-    "Nordkorea",
-    "Nordmakedonien",
-    "Norge",
-    "Oman",
-    "Pakistan",
-    "Palestina",
-    "Panama",
-    "Peru",
-    "Filippinerna",
-    "Polen",
-    "Portugal",
-    "Qatar",
-    "Rumänien",
-    "Ryssland",
-    "San Marino",
-    "Saudiarabien",
-    "Serbien",
-    "Singapore",
-    "Slovakien",
-    "Slovenien",
-    "Somalia",
-    "Sydafrika",
-    "Sydkorea",
-    "Spanien",
-    "Sverige",
-    "Schweiz",
-    "Syrien",
-    "Taiwan",
-    "Tadzjikistan",
-    "Tanzania",
-    "Thailand",
-    "Tunisien",
-    "Turkiet",
-    "Turkmenistan",
-    "Ukraina",
-    "Förenade Arabemiraten",
-    "Storbritannien",
-    "USA",
-    "Uruguay",
-    "Uzbekistan",
-    "Vatikanstaten",
-    "Venezuela",
-    "Vietnam",
-    "Jemen",],
-    
+        "Afghanistan","Albanien","Andorra","Argentina","Armenien","Australien","Österrike","Azerbajdzjan",
+        "Bangladesh","Vitryssland","Belgien","Bhutan","Bosnien och Hercegovina","Brasilien","Bulgarien","Kanada",
+        "Chile","Kina","Colombia","Kroatien","Kuba","Cypern","Tjeckien","Danmark","Egypten","Estland","Etiopien",
+        "Fiji","Finland","Frankrike","Georgien","Tyskland","Grekland","Grenada","Ungern","Island","Indien","Indonesien",
+        "Iran","Irak","Irland","Israel","Italien","Japan","Jordanien","Kazakhstan","Kenya","Kuwait","Kirgizistan",
+        "Lettland","Libanon","Libyen","Liechtenstein","Litauen","Luxemburg","Madagaskar","Malaysia","Maldiverna","Malta",
+        "Mexiko","Moldavien","Monaco","Mongoliet","Montenegro","Marocko","Nepal","Nederländerna","Nya Zeeland","Nigeria",
+        "Nordkorea","Nordmakedonien","Norge","Oman","Pakistan","Palestina","Panama","Peru","Filippinerna","Polen","Portugal",
+        "Qatar","Rumänien","Ryssland","San Marino","Saudiarabien","Serbien","Singapore","Slovakien","Slovenien","Somalia",
+        "Sydafrika","Sydkorea","Spanien","Sverige","Schweiz","Syrien","Taiwan","Tadzjikistan","Tanzania","Thailand",
+        "Tunisien","Turkiet","Turkmenistan","Ukraina","Förenade Arabemiraten","Storbritannien","USA","Uruguay",
+        "Uzbekistan","Vatikanstaten","Venezuela","Vietnam","Jemen"
+    ],
+
     "Afrika_länder": [
-    "Algeriet", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi",
-    "Centralafrikanska republiken", "Chad", "Comorerna", "Kongo‑Brazzaville",
-    "Kongo‑Kinshasa", "Elfenbenskusten", "Djibouti", "Egypten", "Ekvatorialguinea",
-    "Eritrea", "Eswatini", "Etiopien", "Gabon", "Gambia", "Ghana", "Guinea",
-    "Guinea‑Bissau", "Kenya", "Lesotho", "Liberia", "Libyen", "Madagaskar",
-    "Malawi", "Mali", "Marocko", "Mauretanien", "Mauritius", "Moçambique",
-    "Namibia", "Niger", "Nigeria", "Rwanda", "São Tomé och Príncipe", "Senegal",
-    "Seychellerna", "Sierra Leone", "Somalia", "Sydafrika", "Sydsudan", "Sudan",
-    "Tanzania", "Togo", "Tunisien", "Uganda", "Zambia", "Zimbabwe"],
-       
-    "Asien_länder": [
-    "Afghanistan", "Armenien", "Azerbajdzjan", "Bahrain", "Bangladesh", "Bhutan",
-    "Brunei", "Burma (Myanmar)", "Kambodja", "Kina", "Cypern", "Georgien",
-    "Indien", "Indonesien", "Iran", "Irak", "Israel", "Japan", "Jordanien",
-    "Kazakhstan", "Kuwait", "Kirgizistan", "Laos", "Libanon", "Malaysia",
-    "Maldiverna", "Mongoliet", "Nepal", "Nordkorea", "Oman", "Pakistan", "Palestina",
-    "Filippinerna", "Qatar", "Saudiarabien", "Singapore", "Sydkorea", "Syrien",
-    "Sri Lanka", "Tadzjikistan", "Thailand", "Timor-Leste", "Turkmenistan",
-    "Förenade Arabemiraten", "Uzbekistan", "Vietnam", "Jemen"],
+        "Algeriet","Angola","Benin","Botswana","Burkina Faso","Burundi","Centralafrikanska republiken","Chad",
+        "Comorerna","Kongo‑Brazzaville","Kongo‑Kinshasa","Elfenbenskusten","Djibouti","Egypten","Ekvatorialguinea",
+        "Eritrea","Eswatini","Etiopien","Gabon","Gambia","Ghana","Guinea","Guinea‑Bissau","Kenya","Lesotho","Liberia",
+        "Libyen","Madagaskar","Malawi","Mali","Marocko","Mauretanien","Mauritius","Moçambique","Namibia","Niger",
+        "Nigeria","Rwanda","São Tomé och Príncipe","Senegal","Seychellerna","Sierra Leone","Somalia","Sydafrika",
+        "Sydsudan","Sudan","Tanzania","Togo","Tunisien","Uganda","Zambia","Zimbabwe"
+    ],
 
     "Asien_länder": [
-    "Albanien", "Andorra", "Österrike", "Vitryssland", "Belgien", "Bosnien och Hercegovina",
-    "Bulgarien", "Kroatien", "Tjeckien", "Danmark", "Estland", "Finland", "Frankrike",
-    "Tyskland", "Grekland", "Ungern", "Island", "Irland", "Italien", "Kosovo",
-    "Lettland", "Liechtenstein", "Litauen", "Luxemburg", "Malta", "Moldavien",
-    "Monaco", "Montenegro", "Nederländerna", "Nordmakedonien", "Norge", "Polen",
-    "Portugal", "Rumänien", "Ryssland", "San Marino", "Serbien", "Slovakien",
-    "Slovenien", "Spanien", "Sverige", "Schweiz", "Storbritannien", "Ukraina",
-    "Vatikanstaten"],
+        "Afghanistan","Armenien","Azerbajdzjan","Bahrain","Bangladesh","Bhutan","Brunei","Burma (Myanmar)","Kambodja",
+        "Kina","Cypern","Georgien","Indien","Indonesien","Iran","Irak","Israel","Japan","Jordanien","Kazakhstan","Kuwait",
+        "Kirgizistan","Laos","Libanon","Malaysia","Maldiverna","Mongoliet","Nepal","Nordkorea","Oman","Pakistan","Palestina",
+        "Filippinerna","Qatar","Saudiarabien","Singapore","Sydkorea","Syrien","Sri Lanka","Tadzjikistan","Thailand",
+        "Timor-Leste","Turkmenistan","Förenade Arabemiraten","Uzbekistan","Vietnam","Jemen"
+    ],
 
     "Europa_länder": [
-    "Albanien", "Andorra", "Österrike", "Vitryssland", "Belgien", "Bosnien och Hercegovina",
-    "Bulgarien", "Kroatien", "Tjeckien", "Danmark", "Estland", "Finland", "Frankrike",
-    "Tyskland", "Grekland", "Ungern", "Island", "Irland", "Italien", "Kosovo",
-    "Lettland", "Liechtenstein", "Litauen", "Luxemburg", "Malta", "Moldavien",
-    "Monaco", "Montenegro", "Nederländerna", "Nordmakedonien", "Norge", "Polen",
-    "Portugal", "Rumänien", "Ryssland", "San Marino", "Serbien", "Slovakien",
-    "Slovenien", "Spanien", "Sverige", "Schweiz", "Storbritannien", "Ukraina",
-    "Vatikanstaten"],
+        "Albanien","Andorra","Österrike","Vitryssland","Belgien","Bosnien och Hercegovina","Bulgarien","Kroatien",
+        "Tjeckien","Danmark","Estland","Finland","Frankrike","Tyskland","Grekland","Ungern","Island","Irland",
+        "Italien","Kosovo","Lettland","Liechtenstein","Litauen","Luxemburg","Malta","Moldavien","Monaco",
+        "Montenegro","Nederländerna","Nordmakedonien","Norge","Polen","Portugal","Rumänien","Ryssland","San Marino",
+        "Serbien","Slovakien","Slovenien","Spanien","Sverige","Schweiz","Storbritannien","Ukraina","Vatikanstaten"
+    ],
 
     "Nord_amerika": [
-    "Antigua och Barbuda", "Bahamas", "Barbados", "Belize", "Kanada", "Costa Rica",
-    "Kuba", "Dominica", "Dominikanska republiken", "El Salvador", "Grenada",
-    "Guatemala", "Honduras", "Jamaica", "Mexiko", "Nicaragua", "Panama",
-    "Saint Kitts och Nevis", "Saint Lucia", "Saint Vincent och Grenadinerna",
-    "Trinidad och Tobago", "USA"],
+        "Antigua och Barbuda","Bahamas","Barbados","Belize","Kanada","Costa Rica","Kuba","Dominica","Dominikanska republiken",
+        "El Salvador","Grenada","Guatemala","Honduras","Jamaica","Mexiko","Nicaragua","Panama","Saint Kitts och Nevis",
+        "Saint Lucia","Saint Vincent och Grenadinerna","Trinidad och Tobago","USA"
+    ],
 
     "Syd_amerika": [
-    "Argentina", "Bolivia", "Brasilien", "Chile", "Colombia", "Ecuador", "Guyana",
-    "Paraguay", "Peru", "Surinam", "Uruguay", "Venezuela"],
+        "Argentina","Bolivia","Brasilien","Chile","Colombia","Ecuador","Guyana","Paraguay","Peru","Surinam","Uruguay","Venezuela"
+    ],
 
     "Yrken": [
-    "Läkare", "Sjuksköterska", "Lärare", "Ingenjör", "Advokat", "Jurist", "Ekonom",
-    "Revisor", "Psykolog", "Tandläkare", "Biolog",
-    "Kemist", "Fysiker", "Matematiker", "Programmerare",
-    "Arkitekt",
-    "Elektriker", "Snickare", "Målare", "Kock", "Bagare",
-    "Servitör", "Journalist",
-    "Författare", "Översättare", "Skådespelare", "Musiker",
-    "Sångare", "Dansare",
-    "Polis", "Brandman", "Soldat", "Pilot",
-    "Busschaufför", "Taxichaufför", "Truckförare",
-    "Kassör", "Bankman",
-    "Receptionist", "Sekreterare", "Städare",
-    "Fiskare",
-    "Laboratorietekniker", "Apotekstekniker", "Veterinär", "Djurskötare",
-    "Frisör",
-    "Personlig_tränare", "Bilmekaniker",
-    "Konstnär", "Modedesigner",],
+        "Läkare","Sjuksköterska","Lärare","Ingenjör","Advokat","Jurist","Ekonom","Revisor","Psykolog","Tandläkare","Biolog",
+        "Kemist","Fysiker","Matematiker","Programmerare","Arkitekt","Elektriker","Snickare","Målare","Kock","Bagare",
+        "Servitör","Journalist","Författare","Översättare","Skådespelare","Musiker","Sångare","Dansare","Polis","Brandman",
+        "Soldat","Pilot","Busschaufför","Taxichaufför","Truckförare","Kassör","Bankman","Receptionist","Sekreterare",
+        "Städare","Fiskare","Laboratorietekniker","Apotekstekniker","Veterinär","Djurskötare","Frisör","Personlig_tränare",
+        "Bilmekaniker","Konstnär","Modedesigner"
+    ],
 
     "Djur": [
-    "Lejon", "Tiger", "Elefant", "Giraff", "Zebra", "Panter", "Leopard", "Björn",
-    "Varg", "Räv", "Känguru", "Koala", "Panda", "Häst",
-    "Åsna", "Kamel", "Pingvin", "fågel",
-    "Säl", "Delfin",
-    "Val", "Bläckfisk", "Krabba", "Haj", "Sköldpadda",
-    "Krokodil", "Alligator", "Orm", "Ödla", "Chameleont",
-    "Skorpion", "Myra", "Bi", "Fjäril", "Gräshoppa",
-    "Snigel", "Kräfta", "Bläckfisk", "Blåval",
-    "Räka", "Fisk",
-    "Ormrocka", "Manet", "Hästskokrabba", "Sjöhäst", "Igelkott",
-    "Rådjur", "Älg", "Ren", "Ko", "Buffel", "Grizzlybjörn", "Isbjörn", "Flodhäst",
-    "Noshörning", "Gorilla", "Apa", "Katt", "Hund",
-    "Hamster", "Råtta", "Mus"]
-
+        "Lejon","Tiger","Elefant","Giraff","Zebra","Panter","Leopard","Björn","Varg","Räv","Känguru","Koala","Panda","Häst",
+        "Åsna","Kamel","Pingvin","Fågel","Säl","Delfin","Val","Bläckfisk","Krabba","Haj","Sköldpadda","Krokodil","Alligator",
+        "Orm","Ödla","Chameleont","Skorpion","Myra","Bi","Fjäril","Gräshoppa","Snigel","Kräfta","Blåval","Räka","Fisk",
+        "Ormrocka","Manet","Hästskokrabba","Sjöhäst","Igelkott","Rådjur","Älg","Ren","Ko","Buffel","Grizzlybjörn","Isbjörn",
+        "Flodhäst","Noshörning","Gorilla","Apa","Katt","Hund","Hamster","Råtta","Mus"
+    ]
 };
 
+// ---- Game Logic ----
 let numPlayers, spy, category, word;
 let currentPlayer = 1;
 let revealed = false;
@@ -334,6 +198,7 @@ const startBtn = document.getElementById("startBtn");
 const tapBtn = document.getElementById("tapBtn");
 const restartBtn = document.getElementById("restartBtn");
 
+// Fill dropdown
 for (let cat in categories) {
     const option = document.createElement("option");
     option.value = cat;
@@ -362,7 +227,7 @@ function startGame() {
 
 function updateScreen() {
     document.getElementById("playerTitle").textContent = `Player ${currentPlayer}`;
-    document.getElementById("cardText").textContent = "Tap to reveal your role";
+    document.getElementById("cardText").textContent = "Tryck för att visa din roll";
     revealed = false;
 }
 
@@ -371,7 +236,7 @@ function nextStep() {
 
     if (!revealed) {
         if (currentPlayer === spy) {
-            card.innerHTML = "🕵️<br><b>YOU ARE THE SPY</b>";
+            card.innerHTML = "🕵️<br><b>DU ÄR SPY</b>";
         } else {
             card.innerHTML = `<b>Category:</b><br>${category}<br><br><b>Word:</b><br>${word}`;
         }
@@ -379,7 +244,7 @@ function nextStep() {
     } else {
         currentPlayer++;
         if (currentPlayer > numPlayers) {
-            card.innerHTML = `Everyone has seen their role.<br><br><b>Player ${starter}</b> starts talking!`;
+            card.innerHTML = `Alla har fått sitt ord.<br><br><b>Player ${starter}</b> starts talking!`;
             tapBtn.classList.add("hidden");
             restartBtn.classList.remove("hidden");
         } else {
@@ -396,10 +261,5 @@ function restartGame() {
 }
 });
 </script>
-
 </body>
 </html>
-
-
-
-
