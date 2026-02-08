@@ -153,4 +153,113 @@ const categories = {
 
     "Europa_länder": [
         "Albanien","Andorra","Österrike","Vitryssland","Belgien","Bosnien och Hercegovina","Bulgarien","Kroatien",
-        "Tjeckien","Danmark","Estland","Finland","Frankrike","Tyskland","
+        "Tjeckien","Danmark","Estland","Finland","Frankrike","Tyskland","Grekland","Ungern","Island","Irland",
+        "Italien","Kosovo","Lettland","Liechtenstein","Litauen","Luxemburg","Malta","Moldavien","Monaco",
+        "Montenegro","Nederländerna","Nordmakedonien","Norge","Polen","Portugal","Rumänien","Ryssland","San Marino",
+        "Serbien","Slovakien","Slovenien","Spanien","Sverige","Schweiz","Storbritannien","Ukraina","Vatikanstaten"
+    ],
+
+    "Nord_amerika": [
+        "Antigua och Barbuda","Bahamas","Barbados","Belize","Kanada","Costa Rica","Kuba","Dominica","Dominikanska republiken",
+        "El Salvador","Grenada","Guatemala","Honduras","Jamaica","Mexiko","Nicaragua","Panama","Saint Kitts och Nevis",
+        "Saint Lucia","Saint Vincent och Grenadinerna","Trinidad och Tobago","USA"
+    ],
+
+    "Syd_amerika": [
+        "Argentina","Bolivia","Brasilien","Chile","Colombia","Ecuador","Guyana","Paraguay","Peru","Surinam","Uruguay","Venezuela"
+    ],
+
+    "Yrken": [
+        "Läkare","Sjuksköterska","Lärare","Ingenjör","Advokat","Jurist","Ekonom","Revisor","Psykolog","Tandläkare","Biolog",
+        "Kemist","Fysiker","Matematiker","Programmerare","Arkitekt","Elektriker","Snickare","Målare","Kock","Bagare",
+        "Servitör","Journalist","Författare","Översättare","Skådespelare","Musiker","Sångare","Dansare","Polis","Brandman",
+        "Soldat","Pilot","Busschaufför","Taxichaufför","Truckförare","Kassör","Bankman","Receptionist","Sekreterare",
+        "Städare","Fiskare","Laboratorietekniker","Apotekstekniker","Veterinär","Djurskötare","Frisör","Personlig_tränare",
+        "Bilmekaniker","Konstnär","Modedesigner"
+    ],
+
+    "Djur": [
+        "Lejon","Tiger","Elefant","Giraff","Zebra","Panter","Leopard","Björn","Varg","Räv","Känguru","Koala","Panda","Häst",
+        "Åsna","Kamel","Pingvin","Fågel","Säl","Delfin","Val","Bläckfisk","Krabba","Haj","Sköldpadda","Krokodil","Alligator",
+        "Orm","Ödla","Chameleont","Skorpion","Myra","Bi","Fjäril","Gräshoppa","Snigel","Kräfta","Blåval","Räka","Fisk",
+        "Ormrocka","Manet","Hästskokrabba","Sjöhäst","Igelkott","Rådjur","Älg","Ren","Ko","Buffel","Grizzlybjörn","Isbjörn",
+        "Flodhäst","Noshörning","Gorilla","Apa","Katt","Hund","Hamster","Råtta","Mus"
+    ]
+};
+
+// ---- Spelloop ----
+let numPlayers, spy, category, word;
+let currentPlayer = 1;
+let revealed = false;
+let starter;
+
+const categorySelect = document.getElementById("categorySelect");
+const startBtn = document.getElementById("startBtn");
+const tapBtn = document.getElementById("tapBtn");
+const restartBtn = document.getElementById("restartBtn");
+
+// Fyll dropdown robust
+Object.keys(categories).forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat;
+    option.textContent = cat;
+    categorySelect.appendChild(option);
+});
+
+startBtn.onclick = startGame;
+tapBtn.onclick = nextStep;
+restartBtn.onclick = restartGame;
+
+function startGame() {
+    numPlayers = parseInt(document.getElementById("players").value);
+    category = categorySelect.value;
+
+    word = categories[category][Math.floor(Math.random() * categories[category].length)];
+    spy = Math.floor(Math.random() * numPlayers) + 1;
+    starter = Math.floor(Math.random() * numPlayers) + 1;
+
+    document.getElementById("setup").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+
+    currentPlayer = 1;
+    updateScreen();
+}
+
+function updateScreen() {
+    document.getElementById("playerTitle").textContent = `Spelare ${currentPlayer}`;
+    document.getElementById("cardText").textContent = "Tryck för att visa din roll";
+    revealed = false;
+}
+
+function nextStep() {
+    const card = document.getElementById("cardText");
+
+    if (!revealed) {
+        if (currentPlayer === spy) {
+            card.innerHTML = "🕵️<br><b>DU ÄR SPY</b>";
+        } else {
+            card.innerHTML = `<b>Kategori:</b><br>${category}<br><br><b>Ord:</b><br>${word}`;
+        }
+        revealed = true;
+    } else {
+        currentPlayer++;
+        if (currentPlayer > numPlayers) {
+            card.innerHTML = `Alla har sett sin roll.<br><br><b>Spelare ${starter}</b> börjar prata!`;
+            tapBtn.classList.add("hidden");
+            restartBtn.classList.remove("hidden");
+        } else {
+            updateScreen();
+        }
+    }
+}
+
+function restartGame() {
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("setup").classList.remove("hidden");
+    tapBtn.classList.remove("hidden");
+    restartBtn.classList.add("hidden");
+}
+});
+</script>
+</body>
+</html>
