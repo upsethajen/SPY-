@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
 <meta charset="UTF-8">
 <title>Spy Game</title>
@@ -98,7 +98,7 @@ button:active {
     <input type="number" id="players" min="3" max="20" value="5">
 
     <label>Välj kategori</label>
-    <select id="kategoriSelect"></select>
+    <select id="categorySelect"></select>
 
     <button id="startBtn">Starta</button>
 </div>
@@ -111,14 +111,14 @@ button:active {
         Tryck för att visa din roll
     </div>
 
-    <button id="tapBtn">Tap</button>
-    <button id="restartBtn" class="hidden">Restart</button>
+    <button id="tapBtn">Tryck</button>
+    <button id="restartBtn" class="hidden">Starta om</button>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-const kategories = {
+const categories = {
     "Länder": [
         "Afghanistan","Albanien","Andorra","Argentina","Armenien","Australien","Österrike","Azerbajdzjan",
         "Bangladesh","Vitryssland","Belgien","Bhutan","Bosnien och Hercegovina","Brasilien","Bulgarien","Kanada",
@@ -153,113 +153,4 @@ const kategories = {
 
     "Europa_länder": [
         "Albanien","Andorra","Österrike","Vitryssland","Belgien","Bosnien och Hercegovina","Bulgarien","Kroatien",
-        "Tjeckien","Danmark","Estland","Finland","Frankrike","Tyskland","Grekland","Ungern","Island","Irland",
-        "Italien","Kosovo","Lettland","Liechtenstein","Litauen","Luxemburg","Malta","Moldavien","Monaco",
-        "Montenegro","Nederländerna","Nordmakedonien","Norge","Polen","Portugal","Rumänien","Ryssland","San Marino",
-        "Serbien","Slovakien","Slovenien","Spanien","Sverige","Schweiz","Storbritannien","Ukraina","Vatikanstaten"
-    ],
-
-    "Nord_amerika": [
-        "Antigua och Barbuda","Bahamas","Barbados","Belize","Kanada","Costa Rica","Kuba","Dominica","Dominikanska republiken",
-        "El Salvador","Grenada","Guatemala","Honduras","Jamaica","Mexiko","Nicaragua","Panama","Saint Kitts och Nevis",
-        "Saint Lucia","Saint Vincent och Grenadinerna","Trinidad och Tobago","USA"
-    ],
-
-    "Syd_amerika": [
-        "Argentina","Bolivia","Brasilien","Chile","Colombia","Ecuador","Guyana","Paraguay","Peru","Surinam","Uruguay","Venezuela"
-    ],
-
-    "Yrken": [
-        "Läkare","Sjuksköterska","Lärare","Ingenjör","Advokat","Jurist","Ekonom","Revisor","Psykolog","Tandläkare","Biolog",
-        "Kemist","Fysiker","Matematiker","Programmerare","Arkitekt","Elektriker","Snickare","Målare","Kock","Bagare",
-        "Servitör","Journalist","Författare","Översättare","Skådespelare","Musiker","Sångare","Dansare","Polis","Brandman",
-        "Soldat","Pilot","Busschaufför","Taxichaufför","Truckförare","Kassör","Bankman","Receptionist","Sekreterare",
-        "Städare","Fiskare","Laboratorietekniker","Apotekstekniker","Veterinär","Djurskötare","Frisör","Personlig_tränare",
-        "Bilmekaniker","Konstnär","Modedesigner"
-    ],
-
-    "Djur": [
-        "Lejon","Tiger","Elefant","Giraff","Zebra","Panter","Leopard","Björn","Varg","Räv","Känguru","Koala","Panda","Häst",
-        "Åsna","Kamel","Pingvin","Fågel","Säl","Delfin","Val","Bläckfisk","Krabba","Haj","Sköldpadda","Krokodil","Alligator",
-        "Orm","Ödla","Chameleont","Skorpion","Myra","Bi","Fjäril","Gräshoppa","Snigel","Kräfta","Blåval","Räka","Fisk",
-        "Ormrocka","Manet","Hästskokrabba","Sjöhäst","Igelkott","Rådjur","Älg","Ren","Ko","Buffel","Grizzlybjörn","Isbjörn",
-        "Flodhäst","Noshörning","Gorilla","Apa","Katt","Hund","Hamster","Råtta","Mus"
-    ]
-};
-
-// ---- Game Logic ----
-let numPlayers, spy, kategori, ord;
-let currentPlayer = 1;
-let revealed = false;
-let starter;
-
-const kategoriSelect = document.getElementById("kategoriSelect");
-const startBtn = document.getElementById("startBtn");
-const tapBtn = document.getElementById("tapBtn");
-const restartBtn = document.getElementById("restartBtn");
-
-// Fill dropdown
-for (let cat in kategories) {
-    const option = document.createElement("option");
-    option.value = cat;
-    option.textContent = cat;
-    ckategoriSelect.appendChild(option);
-}
-
-startBtn.onclick = startGame;
-tapBtn.onclick = nextStep;
-restartBtn.onclick = restartGame;
-
-function startGame() {
-    numPlayers = parseInt(document.getElementById("players").value);
-    kategori = kategoriSelect.value;
-
-    ord = kategories[kategori][Math.floor(Math.random() * kategories[kategori].length)];
-    spy = Math.floor(Math.random() * numPlayers) + 1;
-    starter = Math.floor(Math.random() * numPlayers) + 1;
-
-    document.getElementById("setup").classList.add("hidden");
-    document.getElementById("game").classList.remove("hidden");
-
-    currentPlayer = 1;
-    updateScreen();
-}
-
-function updateScreen() {
-    document.getElementById("playerTitle").textContent = `Player ${currentPlayer}`;
-    document.getElementById("cardText").textContent = "Tryck för att visa din roll";
-    revealed = false;
-}
-
-function nextStep() {
-    const card = document.getElementById("cardText");
-
-    if (!revealed) {
-        if (currentPlayer === spy) {
-            card.innerHTML = "🕵️<br><b>DU ÄR SPY</b>";
-        } else {
-            card.innerHTML = `<b>Kategori:</b><br>${kategori}<br><br><b>Ord:</b><br>${ord}`;
-        }
-        revealed = true;
-    } else {
-        currentPlayer++;
-        if (currentPlayer > numPlayers) {
-            card.innerHTML = `Alla har fått sitt ord.<br><br><b>Player ${starter}</b> starts talking!`;
-            tapBtn.classList.add("hidden");
-            restartBtn.classList.remove("hidden");
-        } else {
-            updateScreen();
-        }
-    }
-}
-
-function restartGame() {
-    document.getElementById("game").classList.add("hidden");
-    document.getElementById("setup").classList.remove("hidden");
-    tapBtn.classList.remove("hidden");
-    restartBtn.classList.add("hidden");
-}
-});
-</script>
-</body>
-</html>
+        "Tjeckien","Danmark","Estland","Finland","Frankrike","Tyskland","
