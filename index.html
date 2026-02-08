@@ -94,15 +94,15 @@ button:active {
 
 <!-- SETUP -->
 <div id="setup">
-    <h1>🕵️ SPY GAME</h1>
+    <h1>Williams Spy</h1>
 
-    <label>Number of players</label>
+    <label>Hur många spelare?</label>
     <input type="number" id="players" min="3" max="20" value="5">
 
-    <label>Choose category</label>
+    <label>Välj kategori</label>
     <select id="categorySelect"></select>
 
-    <button id="startBtn">Start Game</button>
+    <button id="startBtn">Starta</button>
 </div>
 
 <!-- GAME -->
@@ -110,7 +110,7 @@ button:active {
     <h2 id="playerTitle"></h2>
 
     <div class="card" id="cardText">
-        Tap to reveal your role
+        Tryck för att visa din roll
     </div>
 
     <button id="tapBtn">Tap</button>
@@ -234,7 +234,7 @@ const categories = {
     "Vatikanstaten",
     "Venezuela",
     "Vietnam",
-    "Jemen",]
+    "Jemen",],
     
     "Afrika_länder": [
     "Algeriet", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi",
@@ -245,7 +245,7 @@ const categories = {
     "Malawi", "Mali", "Marocko", "Mauretanien", "Mauritius", "Moçambique",
     "Namibia", "Niger", "Nigeria", "Rwanda", "São Tomé och Príncipe", "Senegal",
     "Seychellerna", "Sierra Leone", "Somalia", "Sydafrika", "Sydsudan", "Sudan",
-    "Tanzania", "Togo", "Tunisien", "Uganda", "Zambia", "Zimbabwe"]
+    "Tanzania", "Togo", "Tunisien", "Uganda", "Zambia", "Zimbabwe"],
        
     "Asien_länder": [
     "Afghanistan", "Armenien", "Azerbajdzjan", "Bahrain", "Bangladesh", "Bhutan",
@@ -255,7 +255,7 @@ const categories = {
     "Maldiverna", "Mongoliet", "Nepal", "Nordkorea", "Oman", "Pakistan", "Palestina",
     "Filippinerna", "Qatar", "Saudiarabien", "Singapore", "Sydkorea", "Syrien",
     "Sri Lanka", "Tadzjikistan", "Thailand", "Timor-Leste", "Turkmenistan",
-    "Förenade Arabemiraten", "Uzbekistan", "Vietnam", "Jemen"]
+    "Förenade Arabemiraten", "Uzbekistan", "Vietnam", "Jemen"],
 
     "Asien_länder": [
     "Albanien", "Andorra", "Österrike", "Vitryssland", "Belgien", "Bosnien och Hercegovina",
@@ -265,7 +265,7 @@ const categories = {
     "Monaco", "Montenegro", "Nederländerna", "Nordmakedonien", "Norge", "Polen",
     "Portugal", "Rumänien", "Ryssland", "San Marino", "Serbien", "Slovakien",
     "Slovenien", "Spanien", "Sverige", "Schweiz", "Storbritannien", "Ukraina",
-    "Vatikanstaten"]
+    "Vatikanstaten"],
 
     "Europa_länder": [
     "Albanien", "Andorra", "Österrike", "Vitryssland", "Belgien", "Bosnien och Hercegovina",
@@ -275,18 +275,18 @@ const categories = {
     "Monaco", "Montenegro", "Nederländerna", "Nordmakedonien", "Norge", "Polen",
     "Portugal", "Rumänien", "Ryssland", "San Marino", "Serbien", "Slovakien",
     "Slovenien", "Spanien", "Sverige", "Schweiz", "Storbritannien", "Ukraina",
-    "Vatikanstaten"]
+    "Vatikanstaten"],
 
     "Nord_amerika": [
     "Antigua och Barbuda", "Bahamas", "Barbados", "Belize", "Kanada", "Costa Rica",
     "Kuba", "Dominica", "Dominikanska republiken", "El Salvador", "Grenada",
     "Guatemala", "Honduras", "Jamaica", "Mexiko", "Nicaragua", "Panama",
     "Saint Kitts och Nevis", "Saint Lucia", "Saint Vincent och Grenadinerna",
-    "Trinidad och Tobago", "USA"]
+    "Trinidad och Tobago", "USA"],
 
     "Syd_amerika": [
     "Argentina", "Bolivia", "Brasilien", "Chile", "Colombia", "Ecuador", "Guyana",
-    "Paraguay", "Peru", "Surinam", "Uruguay", "Venezuela"]
+    "Paraguay", "Peru", "Surinam", "Uruguay", "Venezuela"],
 
     "Yrken": [
     "Läkare", "Sjuksköterska", "Lärare", "Ingenjör", "Advokat", "Jurist", "Ekonom",
@@ -305,7 +305,7 @@ const categories = {
     "Laboratorietekniker", "Apotekstekniker", "Veterinär", "Djurskötare",
     "Frisör",
     "Personlig_tränare", "Bilmekaniker",
-    "Konstnär", "Modedesigner",]
+    "Konstnär", "Modedesigner",],
 
     "Djur": [
     "Lejon", "Tiger", "Elefant", "Giraff", "Zebra", "Panter", "Leopard", "Björn",
@@ -399,6 +399,7 @@ function restartGame() {
 
 </body>
 </html>
+
 
 
 
