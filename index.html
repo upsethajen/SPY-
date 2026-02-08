@@ -98,7 +98,7 @@ button:active {
     <input type="number" id="players" min="3" max="20" value="5">
 
     <label>Välj kategori</label>
-    <select id="categorySelect"></select>
+    <select id="kategoriSelect"></select>
 
     <button id="startBtn">Starta</button>
 </div>
@@ -118,7 +118,7 @@ button:active {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-const categories = {
+const kategories = {
     "Länder": [
         "Afghanistan","Albanien","Andorra","Argentina","Armenien","Australien","Österrike","Azerbajdzjan",
         "Bangladesh","Vitryssland","Belgien","Bhutan","Bosnien och Hercegovina","Brasilien","Bulgarien","Kanada",
@@ -188,22 +188,22 @@ const categories = {
 };
 
 // ---- Game Logic ----
-let numPlayers, spy, category, word;
+let numPlayers, spy, kategori, ord;
 let currentPlayer = 1;
 let revealed = false;
 let starter;
 
-const categorySelect = document.getElementById("categorySelect");
+const kategoriSelect = document.getElementById("kategoriSelect");
 const startBtn = document.getElementById("startBtn");
 const tapBtn = document.getElementById("tapBtn");
 const restartBtn = document.getElementById("restartBtn");
 
 // Fill dropdown
-for (let cat in categories) {
+for (let cat in kategories) {
     const option = document.createElement("option");
     option.value = cat;
     option.textContent = cat;
-    categorySelect.appendChild(option);
+    ckategoriSelect.appendChild(option);
 }
 
 startBtn.onclick = startGame;
@@ -212,9 +212,9 @@ restartBtn.onclick = restartGame;
 
 function startGame() {
     numPlayers = parseInt(document.getElementById("players").value);
-    category = categorySelect.value;
+    kategori = kategoriSelect.value;
 
-    word = categories[category][Math.floor(Math.random() * categories[category].length)];
+    ord = kategories[kategori][Math.floor(Math.random() * kategories[kategori].length)];
     spy = Math.floor(Math.random() * numPlayers) + 1;
     starter = Math.floor(Math.random() * numPlayers) + 1;
 
@@ -238,7 +238,7 @@ function nextStep() {
         if (currentPlayer === spy) {
             card.innerHTML = "🕵️<br><b>DU ÄR SPY</b>";
         } else {
-            card.innerHTML = `<b>Category:</b><br>${category}<br><br><b>Word:</b><br>${word}`;
+            card.innerHTML = `<b>Kategori:</b><br>${kategori}<br><br><b>Ord:</b><br>${ord}`;
         }
         revealed = true;
     } else {
